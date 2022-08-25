@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shitouren.core.autogenerate.dao.UserGrantsDao">
+  <resultMap id="BaseResultMap" type="com.shitouren.core.autogenerate.bean.UserGrants">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="collid" jdbcType="INTEGER" property="collid" />
+    <result column="numberno" jdbcType="VARCHAR" property="numberno" />
+    <result column="hashs" jdbcType="VARCHAR" property="hashs" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="buytime" jdbcType="TIMESTAMP" property="buytime" />
+    <result column="buyprice" jdbcType="DECIMAL" property="buyprice" />
+    <result column="sellprice" jdbcType="DECIMAL" property="sellprice" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="oppositeuser" jdbcType="INTEGER" property="oppositeuser" />
+    <result column="sjtime" jdbcType="TIMESTAMP" property="sjtime" />
+    <result column="granttype" jdbcType="INTEGER" property="granttype" />
+    <result column="cotype" jdbcType="INTEGER" property="cotype" />
+    <result column="paytype" jdbcType="INTEGER" property="paytype" />
+    <result column="tokenId" jdbcType="INTEGER" property="tokenid" />
+    <result column="truenumber" jdbcType="VARCHAR" property="truenumber" />
+    <result column="albumid" jdbcType="INTEGER" property="albumid" />
+    <result column="albumname" jdbcType="VARCHAR" property="albumname" />
+    <result column="collectiontype" jdbcType="INTEGER" property="collectiontype" />
+    <result column="issueid" jdbcType="INTEGER" property="issueid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, userid, collid, numberno, hashs, createtime, buytime, buyprice, sellprice, type, 
+    oppositeuser, sjtime, granttype, cotype, paytype, tokenId, truenumber, albumid, albumname, 
+    collectiontype, issueid
+  </sql>
+  <select id="selectByExample" parameterType="com.shitouren.core.autogenerate.bean.UserGrantsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_grant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null">
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_grant
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_grant
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shitouren.core.autogenerate.bean.UserGrantsExample">
+    delete from user_grant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.UserGrants" useGeneratedKeys="true">
+    insert into user_grant (userid, collid, numberno, 
+      hashs, createtime, buytime, 
+      buyprice, sellprice, type, 
+      oppositeuser, sjtime, granttype, 
+      cotype, paytype, tokenId, 
+      truenumber, albumid, albumname, 
+      collectiontype, issueid)
+    values (#{userid,jdbcType=INTEGER}, #{collid,jdbcType=INTEGER}, #{numberno,jdbcType=VARCHAR}, 
+      #{hashs,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{buytime,jdbcType=TIMESTAMP}, 
+      #{buyprice,jdbcType=DECIMAL}, #{sellprice,jdbcType=DECIMAL}, #{type,jdbcType=INTEGER}, 
+      #{oppositeuser,jdbcType=INTEGER}, #{sjtime,jdbcType=TIMESTAMP}, #{granttype,jdbcType=INTEGER}, 
+      #{cotype,jdbcType=INTEGER}, #{paytype,jdbcType=INTEGER}, #{tokenid,jdbcType=INTEGER}, 
+      #{truenumber,jdbcType=VARCHAR}, #{albumid,jdbcType=INTEGER}, #{albumname,jdbcType=VARCHAR}, 
+      #{collectiontype,jdbcType=INTEGER}, #{issueid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.UserGrants" useGeneratedKeys="true">
+    insert into user_grant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="collid != null">
+        collid,
+      </if>
+      <if test="numberno != null">
+        numberno,
+      </if>
+      <if test="hashs != null">
+        hashs,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="buytime != null">
+        buytime,
+      </if>
+      <if test="buyprice != null">
+        buyprice,
+      </if>
+      <if test="sellprice != null">
+        sellprice,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="oppositeuser != null">
+        oppositeuser,
+      </if>
+      <if test="sjtime != null">
+        sjtime,
+      </if>
+      <if test="granttype != null">
+        granttype,
+      </if>
+      <if test="cotype != null">
+        cotype,
+      </if>
+      <if test="paytype != null">
+        paytype,
+      </if>
+      <if test="tokenid != null">
+        tokenId,
+      </if>
+      <if test="truenumber != null">
+        truenumber,
+      </if>
+      <if test="albumid != null">
+        albumid,
+      </if>
+      <if test="albumname != null">
+        albumname,
+      </if>
+      <if test="collectiontype != null">
+        collectiontype,
+      </if>
+      <if test="issueid != null">
+        issueid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="collid != null">
+        #{collid,jdbcType=INTEGER},
+      </if>
+      <if test="numberno != null">
+        #{numberno,jdbcType=VARCHAR},
+      </if>
+      <if test="hashs != null">
+        #{hashs,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buytime != null">
+        #{buytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyprice != null">
+        #{buyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellprice != null">
+        #{sellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="oppositeuser != null">
+        #{oppositeuser,jdbcType=INTEGER},
+      </if>
+      <if test="sjtime != null">
+        #{sjtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="granttype != null">
+        #{granttype,jdbcType=INTEGER},
+      </if>
+      <if test="cotype != null">
+        #{cotype,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null">
+        #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="tokenid != null">
+        #{tokenid,jdbcType=INTEGER},
+      </if>
+      <if test="truenumber != null">
+        #{truenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="albumid != null">
+        #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="albumname != null">
+        #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="collectiontype != null">
+        #{collectiontype,jdbcType=INTEGER},
+      </if>
+      <if test="issueid != null">
+        #{issueid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shitouren.core.autogenerate.bean.UserGrantsExample" resultType="java.lang.Long">
+    select count(*) from user_grant
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_grant
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.collid != null">
+        collid = #{record.collid,jdbcType=INTEGER},
+      </if>
+      <if test="record.numberno != null">
+        numberno = #{record.numberno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hashs != null">
+        hashs = #{record.hashs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.buytime != null">
+        buytime = #{record.buytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.buyprice != null">
+        buyprice = #{record.buyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sellprice != null">
+        sellprice = #{record.sellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.oppositeuser != null">
+        oppositeuser = #{record.oppositeuser,jdbcType=INTEGER},
+      </if>
+      <if test="record.sjtime != null">
+        sjtime = #{record.sjtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.granttype != null">
+        granttype = #{record.granttype,jdbcType=INTEGER},
+      </if>
+      <if test="record.cotype != null">
+        cotype = #{record.cotype,jdbcType=INTEGER},
+      </if>
+      <if test="record.paytype != null">
+        paytype = #{record.paytype,jdbcType=INTEGER},
+      </if>
+      <if test="record.tokenid != null">
+        tokenId = #{record.tokenid,jdbcType=INTEGER},
+      </if>
+      <if test="record.truenumber != null">
+        truenumber = #{record.truenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.albumid != null">
+        albumid = #{record.albumid,jdbcType=INTEGER},
+      </if>
+      <if test="record.albumname != null">
+        albumname = #{record.albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectiontype != null">
+        collectiontype = #{record.collectiontype,jdbcType=INTEGER},
+      </if>
+      <if test="record.issueid != null">
+        issueid = #{record.issueid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_grant
+    set id = #{record.id,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=INTEGER},
+      collid = #{record.collid,jdbcType=INTEGER},
+      numberno = #{record.numberno,jdbcType=VARCHAR},
+      hashs = #{record.hashs,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      buytime = #{record.buytime,jdbcType=TIMESTAMP},
+      buyprice = #{record.buyprice,jdbcType=DECIMAL},
+      sellprice = #{record.sellprice,jdbcType=DECIMAL},
+      type = #{record.type,jdbcType=INTEGER},
+      oppositeuser = #{record.oppositeuser,jdbcType=INTEGER},
+      sjtime = #{record.sjtime,jdbcType=TIMESTAMP},
+      granttype = #{record.granttype,jdbcType=INTEGER},
+      cotype = #{record.cotype,jdbcType=INTEGER},
+      paytype = #{record.paytype,jdbcType=INTEGER},
+      tokenId = #{record.tokenid,jdbcType=INTEGER},
+      truenumber = #{record.truenumber,jdbcType=VARCHAR},
+      albumid = #{record.albumid,jdbcType=INTEGER},
+      albumname = #{record.albumname,jdbcType=VARCHAR},
+      collectiontype = #{record.collectiontype,jdbcType=INTEGER},
+      issueid = #{record.issueid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shitouren.core.autogenerate.bean.UserGrants">
+    update user_grant
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="collid != null">
+        collid = #{collid,jdbcType=INTEGER},
+      </if>
+      <if test="numberno != null">
+        numberno = #{numberno,jdbcType=VARCHAR},
+      </if>
+      <if test="hashs != null">
+        hashs = #{hashs,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buytime != null">
+        buytime = #{buytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyprice != null">
+        buyprice = #{buyprice,jdbcType=DECIMAL},
+      </if>
+      <if test="sellprice != null">
+        sellprice = #{sellprice,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="oppositeuser != null">
+        oppositeuser = #{oppositeuser,jdbcType=INTEGER},
+      </if>
+      <if test="sjtime != null">
+        sjtime = #{sjtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="granttype != null">
+        granttype = #{granttype,jdbcType=INTEGER},
+      </if>
+      <if test="cotype != null">
+        cotype = #{cotype,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null">
+        paytype = #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="tokenid != null">
+        tokenId = #{tokenid,jdbcType=INTEGER},
+      </if>
+      <if test="truenumber != null">
+        truenumber = #{truenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="albumid != null">
+        albumid = #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="albumname != null">
+        albumname = #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="collectiontype != null">
+        collectiontype = #{collectiontype,jdbcType=INTEGER},
+      </if>
+      <if test="issueid != null">
+        issueid = #{issueid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shitouren.core.autogenerate.bean.UserGrants">
+    update user_grant
+    set userid = #{userid,jdbcType=INTEGER},
+      collid = #{collid,jdbcType=INTEGER},
+      numberno = #{numberno,jdbcType=VARCHAR},
+      hashs = #{hashs,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      buytime = #{buytime,jdbcType=TIMESTAMP},
+      buyprice = #{buyprice,jdbcType=DECIMAL},
+      sellprice = #{sellprice,jdbcType=DECIMAL},
+      type = #{type,jdbcType=INTEGER},
+      oppositeuser = #{oppositeuser,jdbcType=INTEGER},
+      sjtime = #{sjtime,jdbcType=TIMESTAMP},
+      granttype = #{granttype,jdbcType=INTEGER},
+      cotype = #{cotype,jdbcType=INTEGER},
+      paytype = #{paytype,jdbcType=INTEGER},
+      tokenId = #{tokenid,jdbcType=INTEGER},
+      truenumber = #{truenumber,jdbcType=VARCHAR},
+      albumid = #{albumid,jdbcType=INTEGER},
+      albumname = #{albumname,jdbcType=VARCHAR},
+      collectiontype = #{collectiontype,jdbcType=INTEGER},
+      issueid = #{issueid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into user_grant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].id!=null">
+        id,
+      </if>
+      <if test="list[0].userid!=null">
+        userid,
+      </if>
+      <if test="list[0].collid!=null">
+        collid,
+      </if>
+      <if test="list[0].numberno!=null">
+        numberno,
+      </if>
+      <if test="list[0].hashs!=null">
+        hashs,
+      </if>
+      <if test="list[0].createtime!=null">
+        createtime,
+      </if>
+      <if test="list[0].buytime!=null">
+        buytime,
+      </if>
+      <if test="list[0].buyprice!=null">
+        buyprice,
+      </if>
+      <if test="list[0].sellprice!=null">
+        sellprice,
+      </if>
+      <if test="list[0].type!=null">
+        type,
+      </if>
+      <if test="list[0].oppositeuser!=null">
+        oppositeuser,
+      </if>
+      <if test="list[0].sjtime!=null">
+        sjtime,
+      </if>
+      <if test="list[0].granttype!=null">
+        granttype,
+      </if>
+      <if test="list[0].cotype!=null">
+        cotype,
+      </if>
+      <if test="list[0].paytype!=null">
+        paytype,
+      </if>
+      <if test="list[0].tokenid!=null">
+        tokenId,
+      </if>
+      <if test="list[0].truenumber!=null">
+        truenumber,
+      </if>
+      <if test="list[0].albumid!=null">
+        albumid,
+      </if>
+      <if test="list[0].albumname!=null">
+        albumname,
+      </if>
+      <if test="list[0].collectiontype!=null">
+        collectiontype,
+      </if>
+      <if test="list[0].issueid!=null">
+        issueid,
+      </if>
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.id!=null">
+          #{item.id,jdbcType=INTEGER},
+        </if>
+        <if test="item.userid!=null">
+          #{item.userid,jdbcType=INTEGER},
+        </if>
+        <if test="item.collid!=null">
+          #{item.collid,jdbcType=INTEGER},
+        </if>
+        <if test="item.numberno!=null">
+          #{item.numberno,jdbcType=VARCHAR},
+        </if>
+        <if test="item.hashs!=null">
+          #{item.hashs,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createtime!=null">
+          #{item.createtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.buytime!=null">
+          #{item.buytime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.buyprice!=null">
+          #{item.buyprice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.sellprice!=null">
+          #{item.sellprice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.type!=null">
+          #{item.type,jdbcType=INTEGER},
+        </if>
+        <if test="item.oppositeuser!=null">
+          #{item.oppositeuser,jdbcType=INTEGER},
+        </if>
+        <if test="item.sjtime!=null">
+          #{item.sjtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.granttype!=null">
+          #{item.granttype,jdbcType=INTEGER},
+        </if>
+        <if test="item.cotype!=null">
+          #{item.cotype,jdbcType=INTEGER},
+        </if>
+        <if test="item.paytype!=null">
+          #{item.paytype,jdbcType=INTEGER},
+        </if>
+        <if test="item.tokenid!=null">
+          #{item.tokenid,jdbcType=INTEGER},
+        </if>
+        <if test="item.truenumber!=null">
+          #{item.truenumber,jdbcType=VARCHAR},
+        </if>
+        <if test="item.albumid!=null">
+          #{item.albumid,jdbcType=INTEGER},
+        </if>
+        <if test="item.albumname!=null">
+          #{item.albumname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.collectiontype!=null">
+          #{item.collectiontype,jdbcType=INTEGER},
+        </if>
+        <if test="item.issueid!=null">
+          #{item.issueid,jdbcType=INTEGER},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      update user_grant
+      <set>
+        <if test="item.userid!=null">
+          userid=#{item.userid,jdbcType=INTEGER},
+        </if>
+        <if test="item.collid!=null">
+          collid=#{item.collid,jdbcType=INTEGER},
+        </if>
+        <if test="item.numberno!=null">
+          numberno=#{item.numberno,jdbcType=VARCHAR},
+        </if>
+        <if test="item.hashs!=null">
+          hashs=#{item.hashs,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createtime!=null">
+          createtime=#{item.createtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.buytime!=null">
+          buytime=#{item.buytime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.buyprice!=null">
+          buyprice=#{item.buyprice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.sellprice!=null">
+          sellprice=#{item.sellprice,jdbcType=DECIMAL},
+        </if>
+        <if test="item.type!=null">
+          type=#{item.type,jdbcType=INTEGER},
+        </if>
+        <if test="item.oppositeuser!=null">
+          oppositeuser=#{item.oppositeuser,jdbcType=INTEGER},
+        </if>
+        <if test="item.sjtime!=null">
+          sjtime=#{item.sjtime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.granttype!=null">
+          granttype=#{item.granttype,jdbcType=INTEGER},
+        </if>
+        <if test="item.cotype!=null">
+          cotype=#{item.cotype,jdbcType=INTEGER},
+        </if>
+        <if test="item.paytype!=null">
+          paytype=#{item.paytype,jdbcType=INTEGER},
+        </if>
+        <if test="item.tokenid!=null">
+          tokenId=#{item.tokenid,jdbcType=INTEGER},
+        </if>
+        <if test="item.truenumber!=null">
+          truenumber=#{item.truenumber,jdbcType=VARCHAR},
+        </if>
+        <if test="item.albumid!=null">
+          albumid=#{item.albumid,jdbcType=INTEGER},
+        </if>
+        <if test="item.albumname!=null">
+          albumname=#{item.albumname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.collectiontype!=null">
+          collectiontype=#{item.collectiontype,jdbcType=INTEGER},
+        </if>
+        <if test="item.issueid!=null">
+          issueid=#{item.issueid,jdbcType=INTEGER},
+        </if>
+      </set>
+      where 
+      id = #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+</mapper>

@@ -1,0 +1,347 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="generatorTables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+
+        <!-- 批量操作 -->
+        <plugin type="cn.dd.lehui.plugins.BatchInsertPlugin"></plugin>
+        <plugin type="cn.dd.lehui.plugins.BatchUpdatePlugin"></plugin>
+        <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~    -->
+        <!--        <plugin type="cn.dd.lehui.plugins.RenameExampleClassPlugin">-->
+        <!--            <property name="searchString" value="Example$" />-->
+        <!--            &lt;!&ndash; 替换后-->
+        <!--            <property name="replaceString" value="Criteria" />-->
+        <!--             &ndash;&gt;-->
+        <!--            <property name="replaceString" value="Query" />-->
+        <!--        </plugin>-->
+        <!-- 自定义物理分页  可生成支持Mysql数据的limit  不支持Oracle -->
+        <plugin type="cn.dd.lehui.plugins.page.PaginationPlugin"/>
+
+        <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
+        <plugin type="cn.dd.lehui.plugins.RenameSqlMapperPlugin">
+            <property name="searchString" value="Mapper"/>
+            <property name="replaceString" value="Dao"/>
+        </plugin>
+        <!-- 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  -->
+        <plugin type="cn.dd.lehui.plugins.RenameJavaMapperPlugin">
+            <property name="searchString" value="Mapper$"/>
+            <property name="replaceString" value="Dao"/>
+        </plugin>
+        <plugin type="cn.dd.lehui.plugins.MapperAnnotationPlugin">
+            <property name="mapperSuffixString" value="Dao"/>
+        </plugin>
+
+        <commentGenerator type="cn.dd.lehui.plugins.DefaultCommentGenerator">
+            <property name="javaFileEncoding" value="UTF-8"/>
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/xinghuan?autoReconnect=true&amp;allowMultiQueries=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"
+                userId="root"
+                password="root">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator
+                targetPackage="com.shitouren.core.autogenerate.bean"
+                targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator
+                targetPackage="mapper"
+                targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.shitouren.core.autogenerate.dao"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--        &lt;!&ndash;用户表&ndash;&gt;-->
+        <table tableName="users" domainObjectName="Users" enableCountByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="user_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <!--消息-->
+        <table tableName="message" domainObjectName="Message" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="withdrawal" domainObjectName="Withdrawal" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="banner" domainObjectName="Banner" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <!--藏品表-->
+        <table tableName="collection" domainObjectName="Collection" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <!--Dict-->
+        <table tableName="dict" domainObjectName="Dict" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="grants" domainObjectName="Grant" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="user_grant" domainObjectName="UserGrant" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="blindbox" domainObjectName="Blindbox" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="coll_order" domainObjectName="CollOrder" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="issue" domainObjectName="Issue" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="mybox" domainObjectName="Mybox" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="fragment" domainObjectName="Fragment" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="hide_record" domainObjectName="HideRecord" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="balance_record" domainObjectName="BalanceRecord" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="cancel_record" domainObjectName="CancelRecord" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="chat" domainObjectName="Chat" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="agreements" domainObjectName="Agreements" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="give_user" domainObjectName="GiveUser" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="apliay_mh" domainObjectName="Apliaymh" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="realname" domainObjectName="Realname" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="album" domainObjectName="Album" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="prompt" domainObjectName="Prompt" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="bank" domainObjectName="Bank" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+        <table tableName="rechargelist" domainObjectName="Rechargelist" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="money_record" domainObjectName="Moneyrecord" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="task" domainObjectName="Task" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="draw" domainObjectName="Draw" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="draw_record" domainObjectName="Drawrecord" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="ticket" domainObjectName="Ticket" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="message_record" domainObjectName="Messagerecord" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="blindboxtrue" domainObjectName="Blindboxtrue" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="schedulmessage" domainObjectName="Schedulmessage" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="imglist" domainObjectName="Imglist" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="transforlist" domainObjectName="Transforlist" enableCountByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+
+
+
+
+
+
+        <!--        &lt;!&ndash;实名认证表&ndash;&gt;-->
+        <!--        <table tableName="real_name" domainObjectName="RealName" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;抢购记录表&ndash;&gt;-->
+        <!--        <table tableName="robfruits" domainObjectName="Robfruits" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;交易表&ndash;&gt;-->
+        <!--        <table tableName="trade" domainObjectName="Trade" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;常见问题表&ndash;&gt;-->
+        <!--        <table tableName="question" domainObjectName="Question" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;客服表&ndash;&gt;-->
+        <!--        <table tableName="chat" domainObjectName="Chat" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;种子充值表&ndash;&gt;-->
+        <!--        <table tableName="recharge" domainObjectName="Recharge" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;种子记录表&ndash;&gt;-->
+        <!--        <table tableName="sapling_profit" domainObjectName="SaplingProfit" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;团队收益表&ndash;&gt;-->
+        <!--        <table tableName="team_profit" domainObjectName="TeamProfit" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;推荐收益表&ndash;&gt;-->
+        <!--        <table tableName="tuijian_profit" domainObjectName="TuijianProfit" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;累计收益表&ndash;&gt;-->
+        <!--        <table tableName="leiji_profit" domainObjectName="LeijiProfit" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        &lt;!&ndash;等级表&ndash;&gt;-->
+        <!--        <table tableName="level" domainObjectName="Level" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="addres" domainObjectName="Address" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="commodity" domainObjectName="Commodity" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="orders" domainObjectName="Order" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="orders" domainObjectName="Order" enableCountByExample="true"-->
+        <!--               enableSelectByExample="true" enableUpdateByExample="true" enableDeleteByExample="true">-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>-->
+        <!--        </table>-->
+
+    </context>
+
+</generatorConfiguration>

@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shitouren.core.autogenerate.dao.CollectionDao">
+  <resultMap id="BaseResultMap" type="com.shitouren.core.autogenerate.bean.Collection">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="minname" jdbcType="VARCHAR" property="minname" />
+    <result column="limits" jdbcType="INTEGER" property="limits" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="img1" jdbcType="VARCHAR" property="img1" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="boxid" jdbcType="INTEGER" property="boxid" />
+    <result column="isdeploy" jdbcType="INTEGER" property="isdeploy" />
+    <result column="contractAddress" jdbcType="VARCHAR" property="contractaddress" />
+    <result column="sold" jdbcType="INTEGER" property="sold" />
+    <result column="creatorimg" jdbcType="VARCHAR" property="creatorimg" />
+    <result column="stockc" jdbcType="INTEGER" property="stockc" />
+    <result column="nosetup" jdbcType="VARCHAR" property="nosetup" />
+    <result column="albumname" jdbcType="VARCHAR" property="albumname" />
+    <result column="albumid" jdbcType="INTEGER" property="albumid" />
+    <result column="ddcid" jdbcType="BIGINT" property="ddcid" />
+    <result column="pravirty" jdbcType="VARCHAR" property="pravirty" />
+    <result column="drawid" jdbcType="INTEGER" property="drawid" />
+    <result column="drawimg" jdbcType="VARCHAR" property="drawimg" />
+    <result column="thcontractAddress" jdbcType="VARCHAR" property="thcontractaddress" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.shitouren.core.autogenerate.bean.Collection">
+    <result column="details" jdbcType="LONGVARCHAR" property="details" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, img, name, minname, limits, label, price, img1, creator, publisher, type, boxid, 
+    isdeploy, contractAddress, sold, creatorimg, stockc, nosetup, albumname, albumid, 
+    ddcid, pravirty, drawid, drawimg, thcontractAddress
+  </sql>
+  <sql id="Blob_Column_List">
+    details
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.shitouren.core.autogenerate.bean.CollectionExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from collection
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.shitouren.core.autogenerate.bean.CollectionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from collection
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null">
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from collection
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from collection
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shitouren.core.autogenerate.bean.CollectionExample">
+    delete from collection
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.Collection" useGeneratedKeys="true">
+    insert into collection (img, name, minname, 
+      limits, label, price, 
+      img1, creator, publisher, 
+      type, boxid, isdeploy, 
+      contractAddress, sold, creatorimg, 
+      stockc, nosetup, albumname, 
+      albumid, ddcid, pravirty, 
+      drawid, drawimg, thcontractAddress, 
+      details)
+    values (#{img,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{minname,jdbcType=VARCHAR}, 
+      #{limits,jdbcType=INTEGER}, #{label,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{img1,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{boxid,jdbcType=INTEGER}, #{isdeploy,jdbcType=INTEGER}, 
+      #{contractaddress,jdbcType=VARCHAR}, #{sold,jdbcType=INTEGER}, #{creatorimg,jdbcType=VARCHAR}, 
+      #{stockc,jdbcType=INTEGER}, #{nosetup,jdbcType=VARCHAR}, #{albumname,jdbcType=VARCHAR}, 
+      #{albumid,jdbcType=INTEGER}, #{ddcid,jdbcType=BIGINT}, #{pravirty,jdbcType=VARCHAR}, 
+      #{drawid,jdbcType=INTEGER}, #{drawimg,jdbcType=VARCHAR}, #{thcontractaddress,jdbcType=VARCHAR}, 
+      #{details,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.shitouren.core.autogenerate.bean.Collection" useGeneratedKeys="true">
+    insert into collection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="img != null">
+        img,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="minname != null">
+        minname,
+      </if>
+      <if test="limits != null">
+        limits,
+      </if>
+      <if test="label != null">
+        label,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="img1 != null">
+        img1,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="publisher != null">
+        publisher,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="boxid != null">
+        boxid,
+      </if>
+      <if test="isdeploy != null">
+        isdeploy,
+      </if>
+      <if test="contractaddress != null">
+        contractAddress,
+      </if>
+      <if test="sold != null">
+        sold,
+      </if>
+      <if test="creatorimg != null">
+        creatorimg,
+      </if>
+      <if test="stockc != null">
+        stockc,
+      </if>
+      <if test="nosetup != null">
+        nosetup,
+      </if>
+      <if test="albumname != null">
+        albumname,
+      </if>
+      <if test="albumid != null">
+        albumid,
+      </if>
+      <if test="ddcid != null">
+        ddcid,
+      </if>
+      <if test="pravirty != null">
+        pravirty,
+      </if>
+      <if test="drawid != null">
+        drawid,
+      </if>
+      <if test="drawimg != null">
+        drawimg,
+      </if>
+      <if test="thcontractaddress != null">
+        thcontractAddress,
+      </if>
+      <if test="details != null">
+        details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="minname != null">
+        #{minname,jdbcType=VARCHAR},
+      </if>
+      <if test="limits != null">
+        #{limits,jdbcType=INTEGER},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="img1 != null">
+        #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="boxid != null">
+        #{boxid,jdbcType=INTEGER},
+      </if>
+      <if test="isdeploy != null">
+        #{isdeploy,jdbcType=INTEGER},
+      </if>
+      <if test="contractaddress != null">
+        #{contractaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sold != null">
+        #{sold,jdbcType=INTEGER},
+      </if>
+      <if test="creatorimg != null">
+        #{creatorimg,jdbcType=VARCHAR},
+      </if>
+      <if test="stockc != null">
+        #{stockc,jdbcType=INTEGER},
+      </if>
+      <if test="nosetup != null">
+        #{nosetup,jdbcType=VARCHAR},
+      </if>
+      <if test="albumname != null">
+        #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="albumid != null">
+        #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="ddcid != null">
+        #{ddcid,jdbcType=BIGINT},
+      </if>
+      <if test="pravirty != null">
+        #{pravirty,jdbcType=VARCHAR},
+      </if>
+      <if test="drawid != null">
+        #{drawid,jdbcType=INTEGER},
+      </if>
+      <if test="drawimg != null">
+        #{drawimg,jdbcType=VARCHAR},
+      </if>
+      <if test="thcontractaddress != null">
+        #{thcontractaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shitouren.core.autogenerate.bean.CollectionExample" resultType="java.lang.Long">
+    select count(*) from collection
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update collection
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.img != null">
+        img = #{record.img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minname != null">
+        minname = #{record.minname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limits != null">
+        limits = #{record.limits,jdbcType=INTEGER},
+      </if>
+      <if test="record.label != null">
+        label = #{record.label,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.img1 != null">
+        img1 = #{record.img1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisher != null">
+        publisher = #{record.publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.boxid != null">
+        boxid = #{record.boxid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdeploy != null">
+        isdeploy = #{record.isdeploy,jdbcType=INTEGER},
+      </if>
+      <if test="record.contractaddress != null">
+        contractAddress = #{record.contractaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sold != null">
+        sold = #{record.sold,jdbcType=INTEGER},
+      </if>
+      <if test="record.creatorimg != null">
+        creatorimg = #{record.creatorimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockc != null">
+        stockc = #{record.stockc,jdbcType=INTEGER},
+      </if>
+      <if test="record.nosetup != null">
+        nosetup = #{record.nosetup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.albumname != null">
+        albumname = #{record.albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.albumid != null">
+        albumid = #{record.albumid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ddcid != null">
+        ddcid = #{record.ddcid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pravirty != null">
+        pravirty = #{record.pravirty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drawid != null">
+        drawid = #{record.drawid,jdbcType=INTEGER},
+      </if>
+      <if test="record.drawimg != null">
+        drawimg = #{record.drawimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thcontractaddress != null">
+        thcontractAddress = #{record.thcontractaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.details != null">
+        details = #{record.details,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update collection
+    set id = #{record.id,jdbcType=INTEGER},
+      img = #{record.img,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      minname = #{record.minname,jdbcType=VARCHAR},
+      limits = #{record.limits,jdbcType=INTEGER},
+      label = #{record.label,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      img1 = #{record.img1,jdbcType=VARCHAR},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      boxid = #{record.boxid,jdbcType=INTEGER},
+      isdeploy = #{record.isdeploy,jdbcType=INTEGER},
+      contractAddress = #{record.contractaddress,jdbcType=VARCHAR},
+      sold = #{record.sold,jdbcType=INTEGER},
+      creatorimg = #{record.creatorimg,jdbcType=VARCHAR},
+      stockc = #{record.stockc,jdbcType=INTEGER},
+      nosetup = #{record.nosetup,jdbcType=VARCHAR},
+      albumname = #{record.albumname,jdbcType=VARCHAR},
+      albumid = #{record.albumid,jdbcType=INTEGER},
+      ddcid = #{record.ddcid,jdbcType=BIGINT},
+      pravirty = #{record.pravirty,jdbcType=VARCHAR},
+      drawid = #{record.drawid,jdbcType=INTEGER},
+      drawimg = #{record.drawimg,jdbcType=VARCHAR},
+      thcontractAddress = #{record.thcontractaddress,jdbcType=VARCHAR},
+      details = #{record.details,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update collection
+    set id = #{record.id,jdbcType=INTEGER},
+      img = #{record.img,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      minname = #{record.minname,jdbcType=VARCHAR},
+      limits = #{record.limits,jdbcType=INTEGER},
+      label = #{record.label,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      img1 = #{record.img1,jdbcType=VARCHAR},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      boxid = #{record.boxid,jdbcType=INTEGER},
+      isdeploy = #{record.isdeploy,jdbcType=INTEGER},
+      contractAddress = #{record.contractaddress,jdbcType=VARCHAR},
+      sold = #{record.sold,jdbcType=INTEGER},
+      creatorimg = #{record.creatorimg,jdbcType=VARCHAR},
+      stockc = #{record.stockc,jdbcType=INTEGER},
+      nosetup = #{record.nosetup,jdbcType=VARCHAR},
+      albumname = #{record.albumname,jdbcType=VARCHAR},
+      albumid = #{record.albumid,jdbcType=INTEGER},
+      ddcid = #{record.ddcid,jdbcType=BIGINT},
+      pravirty = #{record.pravirty,jdbcType=VARCHAR},
+      drawid = #{record.drawid,jdbcType=INTEGER},
+      drawimg = #{record.drawimg,jdbcType=VARCHAR},
+      thcontractAddress = #{record.thcontractaddress,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shitouren.core.autogenerate.bean.Collection">
+    update collection
+    <set>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="minname != null">
+        minname = #{minname,jdbcType=VARCHAR},
+      </if>
+      <if test="limits != null">
+        limits = #{limits,jdbcType=INTEGER},
+      </if>
+      <if test="label != null">
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="img1 != null">
+        img1 = #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="boxid != null">
+        boxid = #{boxid,jdbcType=INTEGER},
+      </if>
+      <if test="isdeploy != null">
+        isdeploy = #{isdeploy,jdbcType=INTEGER},
+      </if>
+      <if test="contractaddress != null">
+        contractAddress = #{contractaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sold != null">
+        sold = #{sold,jdbcType=INTEGER},
+      </if>
+      <if test="creatorimg != null">
+        creatorimg = #{creatorimg,jdbcType=VARCHAR},
+      </if>
+      <if test="stockc != null">
+        stockc = #{stockc,jdbcType=INTEGER},
+      </if>
+      <if test="nosetup != null">
+        nosetup = #{nosetup,jdbcType=VARCHAR},
+      </if>
+      <if test="albumname != null">
+        albumname = #{albumname,jdbcType=VARCHAR},
+      </if>
+      <if test="albumid != null">
+        albumid = #{albumid,jdbcType=INTEGER},
+      </if>
+      <if test="ddcid != null">
+        ddcid = #{ddcid,jdbcType=BIGINT},
+      </if>
+      <if test="pravirty != null">
+        pravirty = #{pravirty,jdbcType=VARCHAR},
+      </if>
+      <if test="drawid != null">
+        drawid = #{drawid,jdbcType=INTEGER},
+      </if>
+      <if test="drawimg != null">
+        drawimg = #{drawimg,jdbcType=VARCHAR},
+      </if>
+      <if test="thcontractaddress != null">
+        thcontractAddress = #{thcontractaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        details = #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shitouren.core.autogenerate.bean.Collection">
+    update collection
+    set img = #{img,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      minname = #{minname,jdbcType=VARCHAR},
+      limits = #{limits,jdbcType=INTEGER},
+      label = #{label,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      img1 = #{img1,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      boxid = #{boxid,jdbcType=INTEGER},
+      isdeploy = #{isdeploy,jdbcType=INTEGER},
+      contractAddress = #{contractaddress,jdbcType=VARCHAR},
+      sold = #{sold,jdbcType=INTEGER},
+      creatorimg = #{creatorimg,jdbcType=VARCHAR},
+      stockc = #{stockc,jdbcType=INTEGER},
+      nosetup = #{nosetup,jdbcType=VARCHAR},
+      albumname = #{albumname,jdbcType=VARCHAR},
+      albumid = #{albumid,jdbcType=INTEGER},
+      ddcid = #{ddcid,jdbcType=BIGINT},
+      pravirty = #{pravirty,jdbcType=VARCHAR},
+      drawid = #{drawid,jdbcType=INTEGER},
+      drawimg = #{drawimg,jdbcType=VARCHAR},
+      thcontractAddress = #{thcontractaddress,jdbcType=VARCHAR},
+      details = #{details,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shitouren.core.autogenerate.bean.Collection">
+    update collection
+    set img = #{img,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      minname = #{minname,jdbcType=VARCHAR},
+      limits = #{limits,jdbcType=INTEGER},
+      label = #{label,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      img1 = #{img1,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      boxid = #{boxid,jdbcType=INTEGER},
+      isdeploy = #{isdeploy,jdbcType=INTEGER},
+      contractAddress = #{contractaddress,jdbcType=VARCHAR},
+      sold = #{sold,jdbcType=INTEGER},
+      creatorimg = #{creatorimg,jdbcType=VARCHAR},
+      stockc = #{stockc,jdbcType=INTEGER},
+      nosetup = #{nosetup,jdbcType=VARCHAR},
+      albumname = #{albumname,jdbcType=VARCHAR},
+      albumid = #{albumid,jdbcType=INTEGER},
+      ddcid = #{ddcid,jdbcType=BIGINT},
+      pravirty = #{pravirty,jdbcType=VARCHAR},
+      drawid = #{drawid,jdbcType=INTEGER},
+      drawimg = #{drawimg,jdbcType=VARCHAR},
+      thcontractAddress = #{thcontractaddress,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into collection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].id!=null">
+        id,
+      </if>
+      <if test="list[0].img!=null">
+        img,
+      </if>
+      <if test="list[0].name!=null">
+        name,
+      </if>
+      <if test="list[0].minname!=null">
+        minname,
+      </if>
+      <if test="list[0].limits!=null">
+        limits,
+      </if>
+      <if test="list[0].label!=null">
+        label,
+      </if>
+      <if test="list[0].price!=null">
+        price,
+      </if>
+      <if test="list[0].img1!=null">
+        img1,
+      </if>
+      <if test="list[0].creator!=null">
+        creator,
+      </if>
+      <if test="list[0].publisher!=null">
+        publisher,
+      </if>
+      <if test="list[0].type!=null">
+        type,
+      </if>
+      <if test="list[0].boxid!=null">
+        boxid,
+      </if>
+      <if test="list[0].isdeploy!=null">
+        isdeploy,
+      </if>
+      <if test="list[0].contractaddress!=null">
+        contractAddress,
+      </if>
+      <if test="list[0].sold!=null">
+        sold,
+      </if>
+      <if test="list[0].creatorimg!=null">
+        creatorimg,
+      </if>
+      <if test="list[0].stockc!=null">
+        stockc,
+      </if>
+      <if test="list[0].nosetup!=null">
+        nosetup,
+      </if>
+      <if test="list[0].albumname!=null">
+        albumname,
+      </if>
+      <if test="list[0].albumid!=null">
+        albumid,
+      </if>
+      <if test="list[0].ddcid!=null">
+        ddcid,
+      </if>
+      <if test="list[0].pravirty!=null">
+        pravirty,
+      </if>
+      <if test="list[0].drawid!=null">
+        drawid,
+      </if>
+      <if test="list[0].drawimg!=null">
+        drawimg,
+      </if>
+      <if test="list[0].thcontractaddress!=null">
+        thcontractAddress,
+      </if>
+      <if test="list[0].details!=null">
+        details,
+      </if>
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.id!=null">
+          #{item.id,jdbcType=INTEGER},
+        </if>
+        <if test="item.img!=null">
+          #{item.img,jdbcType=VARCHAR},
+        </if>
+        <if test="item.name!=null">
+          #{item.name,jdbcType=VARCHAR},
+        </if>
+        <if test="item.minname!=null">
+          #{item.minname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.limits!=null">
+          #{item.limits,jdbcType=INTEGER},
+        </if>
+        <if test="item.label!=null">
+          #{item.label,jdbcType=VARCHAR},
+        </if>
+        <if test="item.price!=null">
+          #{item.price,jdbcType=DECIMAL},
+        </if>
+        <if test="item.img1!=null">
+          #{item.img1,jdbcType=VARCHAR},
+        </if>
+        <if test="item.creator!=null">
+          #{item.creator,jdbcType=VARCHAR},
+        </if>
+        <if test="item.publisher!=null">
+          #{item.publisher,jdbcType=VARCHAR},
+        </if>
+        <if test="item.type!=null">
+          #{item.type,jdbcType=INTEGER},
+        </if>
+        <if test="item.boxid!=null">
+          #{item.boxid,jdbcType=INTEGER},
+        </if>
+        <if test="item.isdeploy!=null">
+          #{item.isdeploy,jdbcType=INTEGER},
+        </if>
+        <if test="item.contractaddress!=null">
+          #{item.contractaddress,jdbcType=VARCHAR},
+        </if>
+        <if test="item.sold!=null">
+          #{item.sold,jdbcType=INTEGER},
+        </if>
+        <if test="item.creatorimg!=null">
+          #{item.creatorimg,jdbcType=VARCHAR},
+        </if>
+        <if test="item.stockc!=null">
+          #{item.stockc,jdbcType=INTEGER},
+        </if>
+        <if test="item.nosetup!=null">
+          #{item.nosetup,jdbcType=VARCHAR},
+        </if>
+        <if test="item.albumname!=null">
+          #{item.albumname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.albumid!=null">
+          #{item.albumid,jdbcType=INTEGER},
+        </if>
+        <if test="item.ddcid!=null">
+          #{item.ddcid,jdbcType=BIGINT},
+        </if>
+        <if test="item.pravirty!=null">
+          #{item.pravirty,jdbcType=VARCHAR},
+        </if>
+        <if test="item.drawid!=null">
+          #{item.drawid,jdbcType=INTEGER},
+        </if>
+        <if test="item.drawimg!=null">
+          #{item.drawimg,jdbcType=VARCHAR},
+        </if>
+        <if test="item.thcontractaddress!=null">
+          #{item.thcontractaddress,jdbcType=VARCHAR},
+        </if>
+        <if test="item.details!=null">
+          #{item.details,jdbcType=LONGVARCHAR},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      update collection
+      <set>
+        <if test="item.img!=null">
+          img=#{item.img,jdbcType=VARCHAR},
+        </if>
+        <if test="item.name!=null">
+          name=#{item.name,jdbcType=VARCHAR},
+        </if>
+        <if test="item.minname!=null">
+          minname=#{item.minname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.limits!=null">
+          limits=#{item.limits,jdbcType=INTEGER},
+        </if>
+        <if test="item.label!=null">
+          label=#{item.label,jdbcType=VARCHAR},
+        </if>
+        <if test="item.price!=null">
+          price=#{item.price,jdbcType=DECIMAL},
+        </if>
+        <if test="item.img1!=null">
+          img1=#{item.img1,jdbcType=VARCHAR},
+        </if>
+        <if test="item.creator!=null">
+          creator=#{item.creator,jdbcType=VARCHAR},
+        </if>
+        <if test="item.publisher!=null">
+          publisher=#{item.publisher,jdbcType=VARCHAR},
+        </if>
+        <if test="item.type!=null">
+          type=#{item.type,jdbcType=INTEGER},
+        </if>
+        <if test="item.boxid!=null">
+          boxid=#{item.boxid,jdbcType=INTEGER},
+        </if>
+        <if test="item.isdeploy!=null">
+          isdeploy=#{item.isdeploy,jdbcType=INTEGER},
+        </if>
+        <if test="item.contractaddress!=null">
+          contractAddress=#{item.contractaddress,jdbcType=VARCHAR},
+        </if>
+        <if test="item.sold!=null">
+          sold=#{item.sold,jdbcType=INTEGER},
+        </if>
+        <if test="item.creatorimg!=null">
+          creatorimg=#{item.creatorimg,jdbcType=VARCHAR},
+        </if>
+        <if test="item.stockc!=null">
+          stockc=#{item.stockc,jdbcType=INTEGER},
+        </if>
+        <if test="item.nosetup!=null">
+          nosetup=#{item.nosetup,jdbcType=VARCHAR},
+        </if>
+        <if test="item.albumname!=null">
+          albumname=#{item.albumname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.albumid!=null">
+          albumid=#{item.albumid,jdbcType=INTEGER},
+        </if>
+        <if test="item.ddcid!=null">
+          ddcid=#{item.ddcid,jdbcType=BIGINT},
+        </if>
+        <if test="item.pravirty!=null">
+          pravirty=#{item.pravirty,jdbcType=VARCHAR},
+        </if>
+        <if test="item.drawid!=null">
+          drawid=#{item.drawid,jdbcType=INTEGER},
+        </if>
+        <if test="item.drawimg!=null">
+          drawimg=#{item.drawimg,jdbcType=VARCHAR},
+        </if>
+        <if test="item.thcontractaddress!=null">
+          thcontractAddress=#{item.thcontractaddress,jdbcType=VARCHAR},
+        </if>
+        <if test="item.details!=null">
+          details=#{item.details,jdbcType=LONGVARCHAR},
+        </if>
+      </set>
+      where 
+      id = #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+</mapper>

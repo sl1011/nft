@@ -1,0 +1,65 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://121.5.143.209:3306/xinghuan2?autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: xinghuan2
+      password: tKAsepSRMY7dsCRd
+#      url: jdbc:mysql://localhost:3306/pangu?autoReconnect=true&allowMultiQueries=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      username: root
+#      password: ROOT
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，q检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall  #配置日志实现，如  log4j 但因为 springboot2.0默认使用的是 logback 如果使用log4j会使项目无法启动
+      filter:
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            delete-allow: true
+            drop-table-allow: true
+            multi-statement-allow: true
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      use-global-data-source-stat: true
+      stat-view-servlet:
+        deny:
+        allow:
+        login-username: sysadmin
+        login-password: 111111
+  redis:
+    database: 0
+    port: 6379
+    timeout: 5000 #连接超时时间
+    password: 123456789
+    pool:
+      maxTotal: -1 # 连接池最大连接数（使用负值表示没有限制）
+      maxWaitMillis: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+
+    host-name: 101.35.166.129
+    #    host-name: 183.134.61.151
+    jedis:
+      pool:
+        max-idle: 20
+        min-idle: 1
+  thymeleaf:
+    prefix: classpath:templates/
+
+logging:
+  config: classpath:log/logback-boot.xml
+  file:
+    path: /opt/logs/ddzl/logs
+    name: ${spring.application.name}
+  level:
+    cn.dd: debug

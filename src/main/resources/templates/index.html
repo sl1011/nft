@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <!--<meta http-equiv="refresh" content="0; url='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx82311bbc94388d04&redirect_uri=http%3A%2F%2F32748m5a72.wicp.vip%2Fweblogin%2Ftosharelogin%2F&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'">-->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <title></title>
+</head>
+<body>
+<script>
+
+    // document.write('IP地址:' + returnCitySN["cip"] + ', CID:' + returnCitySN["cid"] + ', 地区:' + returnCitySN["cname"]+",浏览器版本:"+getBrowserInfo());
+
+    function getBrowserInfo(){
+        var agent = navigator.userAgent.toLowerCase() ;
+
+        var regStr_ie = /msie [\d.]+;/gi ;
+        var regStr_ff = /firefox\/[\d.]+/gi
+        var regStr_chrome = /chrome\/[\d.]+/gi ;
+        var regStr_saf = /safari\/[\d.]+/gi ;
+
+        //IE
+        if(agent.indexOf("msie") > 0)
+        {
+            return agent.match(regStr_ie) ;
+        }
+
+        //firefox
+        if(agent.indexOf("firefox") > 0)
+        {
+            return agent.match(regStr_ff) ;
+        }
+
+        //Chrome
+        if(agent.indexOf("chrome") > 0)
+        {
+            return agent.match(regStr_chrome) ;
+        }
+
+        //Safari
+        if(agent.indexOf("safari") > 0 && agent.indexOf("chrome") < 0)
+        {
+            return agent.match(regStr_saf) ;
+        }
+
+    }
+
+                    $(function (){
+                        //var ip = getBrowserInfo();
+                        alert(returnCitySN["cip"]);
+                        function GetUrlParam(paraName) {
+                            var url = document.location.toString();
+                            var arrObj = url.split("?");
+
+                            if (arrObj.length > 1) {
+                                var arrPara = arrObj[1].split("&");
+                                var arr;
+
+                                for (var i = 0; i < arrPara.length; i++) {
+                                    arr = arrPara[i].split("=");
+
+                                    if (arr != null && arr[0] == paraName) {
+                                        return arr[1];
+                                    }
+                                }
+                                return "";
+                            }
+                            else {
+                                return "";
+                            }
+                        }
+                        if(GetUrlParam("shareUserId")!=null && GetUrlParam("shareUserId")!="" && GetUrlParam("shareUserId")!="null"){
+                            sessionStorage.setItem("shareUserId", GetUrlParam("shareUserId"));
+
+                        }
+
+                        GetRequest();
+                    })
+
+                        function GetRequest() {
+
+                            var url = location.search; //获取url中"?"符后的字串
+                            var theRequest = new Object();
+                            if (url.indexOf("?") != -1) {
+                                var str = url.substr(1);
+                                strs = str.split("&");
+                                for(var i = 0; i < strs.length; i ++) {
+                                    theRequest[strs[i].split("=")[0]]=decodeURI(strs[i].split("=")[1]);
+                                }
+                            }
+                            //alert(theRequest['code'])
+                            if(theRequest['code']==undefined){
+                                 window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbf82f6be79c9608c&redirect_uri=http://32748m5a72.wicp.vip/Mall/check&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+                            }else{
+                                $.ajax({
+                                    type:"Get",
+                                    //url:"http://32748m5a72.wicp.vip:34694/login/wxLogin?code="+theRequest['code']+"&shareUserId="+sessionStorage.getItem('shareUserId')
+                                    url:"http://3293ha4257.qicp.vip:16044/login/wxLogin?code="+theRequest['code']+"&shareUserId="+sessionStorage.getItem('shareUserId')+"&userIp="+returnCitySN["cip"]
+
+                                })
+
+                            }
+
+                        }
+
+
+</script>
+</body>
+</html>

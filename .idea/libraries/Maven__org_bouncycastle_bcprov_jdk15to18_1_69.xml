@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.bouncycastle:bcprov-jdk15to18:1.69">
+    <CLASSES>
+      <root url="jar://D:/repo/org/bouncycastle/bcprov-jdk15to18/1.69/bcprov-jdk15to18-1.69.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/repo/org/bouncycastle/bcprov-jdk15to18/1.69/bcprov-jdk15to18-1.69-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/repo/org/bouncycastle/bcprov-jdk15to18/1.69/bcprov-jdk15to18-1.69-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

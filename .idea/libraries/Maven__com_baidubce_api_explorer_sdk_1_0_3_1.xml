@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.baidubce:api-explorer-sdk:1.0.3.1">
+    <CLASSES>
+      <root url="jar://D:/repo/com/baidubce/api-explorer-sdk/1.0.3.1/api-explorer-sdk-1.0.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/repo/com/baidubce/api-explorer-sdk/1.0.3.1/api-explorer-sdk-1.0.3.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/repo/com/baidubce/api-explorer-sdk/1.0.3.1/api-explorer-sdk-1.0.3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

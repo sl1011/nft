@@ -1,0 +1,939 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shitouren.core.autogenerate.dao.UsersDao">
+  <resultMap id="BaseResultMap" type="com.shitouren.core.autogenerate.bean.Users">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="head_prtraits" jdbcType="VARCHAR" property="headPrtraits" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="trade_pass_word" jdbcType="VARCHAR" property="tradePassWord" />
+    <result column="autograph" jdbcType="VARCHAR" property="autograph" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="alipay" jdbcType="VARCHAR" property="alipay" />
+    <result column="alipayname" jdbcType="VARCHAR" property="alipayname" />
+    <result column="realnametype" jdbcType="INTEGER" property="realnametype" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status_id" jdbcType="VARCHAR" property="statusId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="privateKey" jdbcType="VARCHAR" property="privatekey" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="realno" jdbcType="VARCHAR" property="realno" />
+    <result column="whitelist" jdbcType="INTEGER" property="whitelist" />
+    <result column="invitationcount" jdbcType="INTEGER" property="invitationcount" />
+    <result column="szcount" jdbcType="INTEGER" property="szcount" />
+    <result column="sztime" jdbcType="TIMESTAMP" property="sztime" />
+    <result column="register_code" jdbcType="VARCHAR" property="registerCode" />
+    <result column="invitation_id" jdbcType="INTEGER" property="invitationId" />
+    <result column="freezemoney" jdbcType="DECIMAL" property="freezemoney" />
+    <result column="Keyseed" jdbcType="VARCHAR" property="keyseed" />
+    <result column="bind_card_id" jdbcType="VARCHAR" property="bindCardId" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="realnamenum" jdbcType="INTEGER" property="realnamenum" />
+    <result column="isagent" jdbcType="INTEGER" property="isagent" />
+    <result column="thaddress" jdbcType="VARCHAR" property="thaddress" />
+    <result column="thprivatekey" jdbcType="VARCHAR" property="thprivatekey" />
+    <result column="userkey" jdbcType="VARCHAR" property="userkey" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    user_id, phone_number, head_prtraits, nick_name, passwd, trade_pass_word, autograph, 
+    balance, alipay, alipayname, realnametype, create_time, status_id, address, privateKey, 
+    realname, realno, whitelist, invitationcount, szcount, sztime, register_code, invitation_id, 
+    freezemoney, Keyseed, bind_card_id, money, realnamenum, isagent, thaddress, thprivatekey, 
+    userkey
+  </sql>
+  <select id="selectByExample" parameterType="com.shitouren.core.autogenerate.bean.UsersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null">
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shitouren.core.autogenerate.bean.UsersExample">
+    delete from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.shitouren.core.autogenerate.bean.Users" useGeneratedKeys="true">
+    insert into users (phone_number, head_prtraits, nick_name, 
+      passwd, trade_pass_word, autograph, 
+      balance, alipay, alipayname, 
+      realnametype, create_time, status_id, 
+      address, privateKey, realname, 
+      realno, whitelist, invitationcount, 
+      szcount, sztime, register_code, 
+      invitation_id, freezemoney, Keyseed, 
+      bind_card_id, money, realnamenum, 
+      isagent, thaddress, thprivatekey, 
+      userkey)
+    values (#{phoneNumber,jdbcType=VARCHAR}, #{headPrtraits,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{passwd,jdbcType=VARCHAR}, #{tradePassWord,jdbcType=VARCHAR}, #{autograph,jdbcType=VARCHAR}, 
+      #{balance,jdbcType=DECIMAL}, #{alipay,jdbcType=VARCHAR}, #{alipayname,jdbcType=VARCHAR}, 
+      #{realnametype,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{statusId,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{privatekey,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
+      #{realno,jdbcType=VARCHAR}, #{whitelist,jdbcType=INTEGER}, #{invitationcount,jdbcType=INTEGER}, 
+      #{szcount,jdbcType=INTEGER}, #{sztime,jdbcType=TIMESTAMP}, #{registerCode,jdbcType=VARCHAR}, 
+      #{invitationId,jdbcType=INTEGER}, #{freezemoney,jdbcType=DECIMAL}, #{keyseed,jdbcType=VARCHAR}, 
+      #{bindCardId,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL}, #{realnamenum,jdbcType=INTEGER}, 
+      #{isagent,jdbcType=INTEGER}, #{thaddress,jdbcType=VARCHAR}, #{thprivatekey,jdbcType=VARCHAR}, 
+      #{userkey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.shitouren.core.autogenerate.bean.Users" useGeneratedKeys="true">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+      <if test="headPrtraits != null">
+        head_prtraits,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+      <if test="tradePassWord != null">
+        trade_pass_word,
+      </if>
+      <if test="autograph != null">
+        autograph,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="alipay != null">
+        alipay,
+      </if>
+      <if test="alipayname != null">
+        alipayname,
+      </if>
+      <if test="realnametype != null">
+        realnametype,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="statusId != null">
+        status_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="privatekey != null">
+        privateKey,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="realno != null">
+        realno,
+      </if>
+      <if test="whitelist != null">
+        whitelist,
+      </if>
+      <if test="invitationcount != null">
+        invitationcount,
+      </if>
+      <if test="szcount != null">
+        szcount,
+      </if>
+      <if test="sztime != null">
+        sztime,
+      </if>
+      <if test="registerCode != null">
+        register_code,
+      </if>
+      <if test="invitationId != null">
+        invitation_id,
+      </if>
+      <if test="freezemoney != null">
+        freezemoney,
+      </if>
+      <if test="keyseed != null">
+        Keyseed,
+      </if>
+      <if test="bindCardId != null">
+        bind_card_id,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="realnamenum != null">
+        realnamenum,
+      </if>
+      <if test="isagent != null">
+        isagent,
+      </if>
+      <if test="thaddress != null">
+        thaddress,
+      </if>
+      <if test="thprivatekey != null">
+        thprivatekey,
+      </if>
+      <if test="userkey != null">
+        userkey,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="headPrtraits != null">
+        #{headPrtraits,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePassWord != null">
+        #{tradePassWord,jdbcType=VARCHAR},
+      </if>
+      <if test="autograph != null">
+        #{autograph,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="alipay != null">
+        #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayname != null">
+        #{alipayname,jdbcType=VARCHAR},
+      </if>
+      <if test="realnametype != null">
+        #{realnametype,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusId != null">
+        #{statusId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="privatekey != null">
+        #{privatekey,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="realno != null">
+        #{realno,jdbcType=VARCHAR},
+      </if>
+      <if test="whitelist != null">
+        #{whitelist,jdbcType=INTEGER},
+      </if>
+      <if test="invitationcount != null">
+        #{invitationcount,jdbcType=INTEGER},
+      </if>
+      <if test="szcount != null">
+        #{szcount,jdbcType=INTEGER},
+      </if>
+      <if test="sztime != null">
+        #{sztime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerCode != null">
+        #{registerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationId != null">
+        #{invitationId,jdbcType=INTEGER},
+      </if>
+      <if test="freezemoney != null">
+        #{freezemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="keyseed != null">
+        #{keyseed,jdbcType=VARCHAR},
+      </if>
+      <if test="bindCardId != null">
+        #{bindCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="realnamenum != null">
+        #{realnamenum,jdbcType=INTEGER},
+      </if>
+      <if test="isagent != null">
+        #{isagent,jdbcType=INTEGER},
+      </if>
+      <if test="thaddress != null">
+        #{thaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="thprivatekey != null">
+        #{thprivatekey,jdbcType=VARCHAR},
+      </if>
+      <if test="userkey != null">
+        #{userkey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shitouren.core.autogenerate.bean.UsersExample" resultType="java.lang.Long">
+    select count(*) from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update users
+    <set>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.phoneNumber != null">
+        phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headPrtraits != null">
+        head_prtraits = #{record.headPrtraits,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null">
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwd != null">
+        passwd = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradePassWord != null">
+        trade_pass_word = #{record.tradePassWord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.autograph != null">
+        autograph = #{record.autograph,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.alipay != null">
+        alipay = #{record.alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alipayname != null">
+        alipayname = #{record.alipayname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realnametype != null">
+        realnametype = #{record.realnametype,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.statusId != null">
+        status_id = #{record.statusId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.privatekey != null">
+        privateKey = #{record.privatekey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realname != null">
+        realname = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realno != null">
+        realno = #{record.realno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whitelist != null">
+        whitelist = #{record.whitelist,jdbcType=INTEGER},
+      </if>
+      <if test="record.invitationcount != null">
+        invitationcount = #{record.invitationcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.szcount != null">
+        szcount = #{record.szcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.sztime != null">
+        sztime = #{record.sztime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.registerCode != null">
+        register_code = #{record.registerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invitationId != null">
+        invitation_id = #{record.invitationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.freezemoney != null">
+        freezemoney = #{record.freezemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.keyseed != null">
+        Keyseed = #{record.keyseed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindCardId != null">
+        bind_card_id = #{record.bindCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.realnamenum != null">
+        realnamenum = #{record.realnamenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.isagent != null">
+        isagent = #{record.isagent,jdbcType=INTEGER},
+      </if>
+      <if test="record.thaddress != null">
+        thaddress = #{record.thaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thprivatekey != null">
+        thprivatekey = #{record.thprivatekey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userkey != null">
+        userkey = #{record.userkey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update users
+    set user_id = #{record.userId,jdbcType=INTEGER},
+      phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      head_prtraits = #{record.headPrtraits,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      passwd = #{record.passwd,jdbcType=VARCHAR},
+      trade_pass_word = #{record.tradePassWord,jdbcType=VARCHAR},
+      autograph = #{record.autograph,jdbcType=VARCHAR},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      alipay = #{record.alipay,jdbcType=VARCHAR},
+      alipayname = #{record.alipayname,jdbcType=VARCHAR},
+      realnametype = #{record.realnametype,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      status_id = #{record.statusId,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      privateKey = #{record.privatekey,jdbcType=VARCHAR},
+      realname = #{record.realname,jdbcType=VARCHAR},
+      realno = #{record.realno,jdbcType=VARCHAR},
+      whitelist = #{record.whitelist,jdbcType=INTEGER},
+      invitationcount = #{record.invitationcount,jdbcType=INTEGER},
+      szcount = #{record.szcount,jdbcType=INTEGER},
+      sztime = #{record.sztime,jdbcType=TIMESTAMP},
+      register_code = #{record.registerCode,jdbcType=VARCHAR},
+      invitation_id = #{record.invitationId,jdbcType=INTEGER},
+      freezemoney = #{record.freezemoney,jdbcType=DECIMAL},
+      Keyseed = #{record.keyseed,jdbcType=VARCHAR},
+      bind_card_id = #{record.bindCardId,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=DECIMAL},
+      realnamenum = #{record.realnamenum,jdbcType=INTEGER},
+      isagent = #{record.isagent,jdbcType=INTEGER},
+      thaddress = #{record.thaddress,jdbcType=VARCHAR},
+      thprivatekey = #{record.thprivatekey,jdbcType=VARCHAR},
+      userkey = #{record.userkey,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shitouren.core.autogenerate.bean.Users">
+    update users
+    <set>
+      <if test="phoneNumber != null">
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="headPrtraits != null">
+        head_prtraits = #{headPrtraits,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePassWord != null">
+        trade_pass_word = #{tradePassWord,jdbcType=VARCHAR},
+      </if>
+      <if test="autograph != null">
+        autograph = #{autograph,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="alipay != null">
+        alipay = #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayname != null">
+        alipayname = #{alipayname,jdbcType=VARCHAR},
+      </if>
+      <if test="realnametype != null">
+        realnametype = #{realnametype,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusId != null">
+        status_id = #{statusId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="privatekey != null">
+        privateKey = #{privatekey,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="realno != null">
+        realno = #{realno,jdbcType=VARCHAR},
+      </if>
+      <if test="whitelist != null">
+        whitelist = #{whitelist,jdbcType=INTEGER},
+      </if>
+      <if test="invitationcount != null">
+        invitationcount = #{invitationcount,jdbcType=INTEGER},
+      </if>
+      <if test="szcount != null">
+        szcount = #{szcount,jdbcType=INTEGER},
+      </if>
+      <if test="sztime != null">
+        sztime = #{sztime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registerCode != null">
+        register_code = #{registerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationId != null">
+        invitation_id = #{invitationId,jdbcType=INTEGER},
+      </if>
+      <if test="freezemoney != null">
+        freezemoney = #{freezemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="keyseed != null">
+        Keyseed = #{keyseed,jdbcType=VARCHAR},
+      </if>
+      <if test="bindCardId != null">
+        bind_card_id = #{bindCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="realnamenum != null">
+        realnamenum = #{realnamenum,jdbcType=INTEGER},
+      </if>
+      <if test="isagent != null">
+        isagent = #{isagent,jdbcType=INTEGER},
+      </if>
+      <if test="thaddress != null">
+        thaddress = #{thaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="thprivatekey != null">
+        thprivatekey = #{thprivatekey,jdbcType=VARCHAR},
+      </if>
+      <if test="userkey != null">
+        userkey = #{userkey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shitouren.core.autogenerate.bean.Users">
+    update users
+    set phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      head_prtraits = #{headPrtraits,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      trade_pass_word = #{tradePassWord,jdbcType=VARCHAR},
+      autograph = #{autograph,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      alipay = #{alipay,jdbcType=VARCHAR},
+      alipayname = #{alipayname,jdbcType=VARCHAR},
+      realnametype = #{realnametype,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status_id = #{statusId,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      privateKey = #{privatekey,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      realno = #{realno,jdbcType=VARCHAR},
+      whitelist = #{whitelist,jdbcType=INTEGER},
+      invitationcount = #{invitationcount,jdbcType=INTEGER},
+      szcount = #{szcount,jdbcType=INTEGER},
+      sztime = #{sztime,jdbcType=TIMESTAMP},
+      register_code = #{registerCode,jdbcType=VARCHAR},
+      invitation_id = #{invitationId,jdbcType=INTEGER},
+      freezemoney = #{freezemoney,jdbcType=DECIMAL},
+      Keyseed = #{keyseed,jdbcType=VARCHAR},
+      bind_card_id = #{bindCardId,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      realnamenum = #{realnamenum,jdbcType=INTEGER},
+      isagent = #{isagent,jdbcType=INTEGER},
+      thaddress = #{thaddress,jdbcType=VARCHAR},
+      thprivatekey = #{thprivatekey,jdbcType=VARCHAR},
+      userkey = #{userkey,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].userId!=null">
+        user_id,
+      </if>
+      <if test="list[0].phoneNumber!=null">
+        phone_number,
+      </if>
+      <if test="list[0].headPrtraits!=null">
+        head_prtraits,
+      </if>
+      <if test="list[0].nickName!=null">
+        nick_name,
+      </if>
+      <if test="list[0].passwd!=null">
+        passwd,
+      </if>
+      <if test="list[0].tradePassWord!=null">
+        trade_pass_word,
+      </if>
+      <if test="list[0].autograph!=null">
+        autograph,
+      </if>
+      <if test="list[0].balance!=null">
+        balance,
+      </if>
+      <if test="list[0].alipay!=null">
+        alipay,
+      </if>
+      <if test="list[0].alipayname!=null">
+        alipayname,
+      </if>
+      <if test="list[0].realnametype!=null">
+        realnametype,
+      </if>
+      <if test="list[0].createTime!=null">
+        create_time,
+      </if>
+      <if test="list[0].statusId!=null">
+        status_id,
+      </if>
+      <if test="list[0].address!=null">
+        address,
+      </if>
+      <if test="list[0].privatekey!=null">
+        privateKey,
+      </if>
+      <if test="list[0].realname!=null">
+        realname,
+      </if>
+      <if test="list[0].realno!=null">
+        realno,
+      </if>
+      <if test="list[0].whitelist!=null">
+        whitelist,
+      </if>
+      <if test="list[0].invitationcount!=null">
+        invitationcount,
+      </if>
+      <if test="list[0].szcount!=null">
+        szcount,
+      </if>
+      <if test="list[0].sztime!=null">
+        sztime,
+      </if>
+      <if test="list[0].registerCode!=null">
+        register_code,
+      </if>
+      <if test="list[0].invitationId!=null">
+        invitation_id,
+      </if>
+      <if test="list[0].freezemoney!=null">
+        freezemoney,
+      </if>
+      <if test="list[0].keyseed!=null">
+        Keyseed,
+      </if>
+      <if test="list[0].bindCardId!=null">
+        bind_card_id,
+      </if>
+      <if test="list[0].money!=null">
+        money,
+      </if>
+      <if test="list[0].realnamenum!=null">
+        realnamenum,
+      </if>
+      <if test="list[0].isagent!=null">
+        isagent,
+      </if>
+      <if test="list[0].thaddress!=null">
+        thaddress,
+      </if>
+      <if test="list[0].thprivatekey!=null">
+        thprivatekey,
+      </if>
+      <if test="list[0].userkey!=null">
+        userkey,
+      </if>
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.userId!=null">
+          #{item.userId,jdbcType=INTEGER},
+        </if>
+        <if test="item.phoneNumber!=null">
+          #{item.phoneNumber,jdbcType=VARCHAR},
+        </if>
+        <if test="item.headPrtraits!=null">
+          #{item.headPrtraits,jdbcType=VARCHAR},
+        </if>
+        <if test="item.nickName!=null">
+          #{item.nickName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.passwd!=null">
+          #{item.passwd,jdbcType=VARCHAR},
+        </if>
+        <if test="item.tradePassWord!=null">
+          #{item.tradePassWord,jdbcType=VARCHAR},
+        </if>
+        <if test="item.autograph!=null">
+          #{item.autograph,jdbcType=VARCHAR},
+        </if>
+        <if test="item.balance!=null">
+          #{item.balance,jdbcType=DECIMAL},
+        </if>
+        <if test="item.alipay!=null">
+          #{item.alipay,jdbcType=VARCHAR},
+        </if>
+        <if test="item.alipayname!=null">
+          #{item.alipayname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realnametype!=null">
+          #{item.realnametype,jdbcType=INTEGER},
+        </if>
+        <if test="item.createTime!=null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.statusId!=null">
+          #{item.statusId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.address!=null">
+          #{item.address,jdbcType=VARCHAR},
+        </if>
+        <if test="item.privatekey!=null">
+          #{item.privatekey,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realname!=null">
+          #{item.realname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realno!=null">
+          #{item.realno,jdbcType=VARCHAR},
+        </if>
+        <if test="item.whitelist!=null">
+          #{item.whitelist,jdbcType=INTEGER},
+        </if>
+        <if test="item.invitationcount!=null">
+          #{item.invitationcount,jdbcType=INTEGER},
+        </if>
+        <if test="item.szcount!=null">
+          #{item.szcount,jdbcType=INTEGER},
+        </if>
+        <if test="item.sztime!=null">
+          #{item.sztime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.registerCode!=null">
+          #{item.registerCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.invitationId!=null">
+          #{item.invitationId,jdbcType=INTEGER},
+        </if>
+        <if test="item.freezemoney!=null">
+          #{item.freezemoney,jdbcType=DECIMAL},
+        </if>
+        <if test="item.keyseed!=null">
+          #{item.keyseed,jdbcType=VARCHAR},
+        </if>
+        <if test="item.bindCardId!=null">
+          #{item.bindCardId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.money!=null">
+          #{item.money,jdbcType=DECIMAL},
+        </if>
+        <if test="item.realnamenum!=null">
+          #{item.realnamenum,jdbcType=INTEGER},
+        </if>
+        <if test="item.isagent!=null">
+          #{item.isagent,jdbcType=INTEGER},
+        </if>
+        <if test="item.thaddress!=null">
+          #{item.thaddress,jdbcType=VARCHAR},
+        </if>
+        <if test="item.thprivatekey!=null">
+          #{item.thprivatekey,jdbcType=VARCHAR},
+        </if>
+        <if test="item.userkey!=null">
+          #{item.userkey,jdbcType=VARCHAR},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      update users
+      <set>
+        <if test="item.phoneNumber!=null">
+          phone_number=#{item.phoneNumber,jdbcType=VARCHAR},
+        </if>
+        <if test="item.headPrtraits!=null">
+          head_prtraits=#{item.headPrtraits,jdbcType=VARCHAR},
+        </if>
+        <if test="item.nickName!=null">
+          nick_name=#{item.nickName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.passwd!=null">
+          passwd=#{item.passwd,jdbcType=VARCHAR},
+        </if>
+        <if test="item.tradePassWord!=null">
+          trade_pass_word=#{item.tradePassWord,jdbcType=VARCHAR},
+        </if>
+        <if test="item.autograph!=null">
+          autograph=#{item.autograph,jdbcType=VARCHAR},
+        </if>
+        <if test="item.balance!=null">
+          balance=#{item.balance,jdbcType=DECIMAL},
+        </if>
+        <if test="item.alipay!=null">
+          alipay=#{item.alipay,jdbcType=VARCHAR},
+        </if>
+        <if test="item.alipayname!=null">
+          alipayname=#{item.alipayname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realnametype!=null">
+          realnametype=#{item.realnametype,jdbcType=INTEGER},
+        </if>
+        <if test="item.createTime!=null">
+          create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.statusId!=null">
+          status_id=#{item.statusId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.address!=null">
+          address=#{item.address,jdbcType=VARCHAR},
+        </if>
+        <if test="item.privatekey!=null">
+          privateKey=#{item.privatekey,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realname!=null">
+          realname=#{item.realname,jdbcType=VARCHAR},
+        </if>
+        <if test="item.realno!=null">
+          realno=#{item.realno,jdbcType=VARCHAR},
+        </if>
+        <if test="item.whitelist!=null">
+          whitelist=#{item.whitelist,jdbcType=INTEGER},
+        </if>
+        <if test="item.invitationcount!=null">
+          invitationcount=#{item.invitationcount,jdbcType=INTEGER},
+        </if>
+        <if test="item.szcount!=null">
+          szcount=#{item.szcount,jdbcType=INTEGER},
+        </if>
+        <if test="item.sztime!=null">
+          sztime=#{item.sztime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.registerCode!=null">
+          register_code=#{item.registerCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.invitationId!=null">
+          invitation_id=#{item.invitationId,jdbcType=INTEGER},
+        </if>
+        <if test="item.freezemoney!=null">
+          freezemoney=#{item.freezemoney,jdbcType=DECIMAL},
+        </if>
+        <if test="item.keyseed!=null">
+          Keyseed=#{item.keyseed,jdbcType=VARCHAR},
+        </if>
+        <if test="item.bindCardId!=null">
+          bind_card_id=#{item.bindCardId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.money!=null">
+          money=#{item.money,jdbcType=DECIMAL},
+        </if>
+        <if test="item.realnamenum!=null">
+          realnamenum=#{item.realnamenum,jdbcType=INTEGER},
+        </if>
+        <if test="item.isagent!=null">
+          isagent=#{item.isagent,jdbcType=INTEGER},
+        </if>
+        <if test="item.thaddress!=null">
+          thaddress=#{item.thaddress,jdbcType=VARCHAR},
+        </if>
+        <if test="item.thprivatekey!=null">
+          thprivatekey=#{item.thprivatekey,jdbcType=VARCHAR},
+        </if>
+        <if test="item.userkey!=null">
+          userkey=#{item.userkey,jdbcType=VARCHAR},
+        </if>
+      </set>
+      where 
+      user_id = #{item.userId,jdbcType=INTEGER}
+    </foreach>
+  </update>
+</mapper>

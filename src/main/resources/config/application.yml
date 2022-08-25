@@ -1,0 +1,16 @@
+server:
+  port: 8200
+spring:
+  application:
+    name: YueXin
+  profiles:
+    active: local
+logging:
+  level:
+    com.shitouren.core: debug
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
